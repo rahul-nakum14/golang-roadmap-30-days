@@ -40,4 +40,30 @@ func main() {
 			fmt.Println("Other number")
 		} 
 	}
+
+	// range statement
+
+	nums:= []int{1, 2, 3, 4, 5}
+	for index, value := range nums {
+		switch value {
+		case 1:
+			fmt.Println("Skipping the value:", value)
+		default:
+			fmt.Println("Index:", index, "Value:", value)
+		}
+	}
+
+	// Function call
+	var n int;
+	fmt.Print("Enter a number to calculate factorial: ")
+	fmt.Scan(&n)
+	result := factorial(n)
+	fmt.Printf("Factorial of %d is %d\n", n, result)
+}
+
+func factorial(n int) int {
+	if n == 0 {
+		return 1
+	}
+	return n * factorial(n-1)
 }
