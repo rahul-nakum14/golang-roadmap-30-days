@@ -4,6 +4,16 @@ import (
 	"fmt"
 )
 
+type Person struct {
+		name string
+		age int
+}
+
+type Rectangle struct {
+		width , height int
+}
+
+	
 func main(){
 	x := 10
 	y := &x
@@ -19,10 +29,31 @@ func main(){
 	// prac1()
 	// prac2()
 	// prac3()
-	prac4(y)
-    fmt.Println("value of the x is ", x)
+	// prac4(y)
+    // fmt.Println("value of the x is ", x)
+
+	// p1 := Person{"John", 30}
+	// p2 := &p1
+	// fmt.Println("Before Value of the p1", p1.name)
+	// p2.name = "Changed"
+	// fmt.Println("After Value of the p1", p1.name)
+
+	r := Rectangle{10, 5}
+	fmt.Println("Area of the rectangle is ", r.area())
+	r.scale(2)
+	fmt.Println("Area of the rectangle after scaling is ", r.area())
+	
 }
 
+// value receiver
+func (r Rectangle) area() int {
+	return r.width * r.height
+}
+
+func (r *Rectangle) scale(factor int) {
+	r.width *= factor
+	r.height *= factor
+}
 
 func prac1() {
     x := 50
