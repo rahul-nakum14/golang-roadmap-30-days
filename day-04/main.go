@@ -7,6 +7,10 @@ type Shape interface {
 	Perimeter() float64
 }
 
+type Square struct {
+    Side float64
+}
+
 type Rectangle struct {
 	Width  float64
 	Height float64
@@ -29,9 +33,19 @@ func (c Circle) Area() float64 {
 func (c Circle) Perimeter() float64 {
 	return 2 * 3.14 * c.Radius
 }
+func (s Square) Area() float64 {
+	return s.Side * s.Side
+}
+func (s Square) Perimeter() float64 {
+	return 4 * s.Side
+}
 
+func printShapeInfo(s Shape) {
+	fmt.Println("Area:", s.Area())
+	fmt.Println("Perimeter:", s.Perimeter())
+}
 
-func main() {
+func main() {	
 	var s Shape
 	s = Rectangle{Width: 5, Height: 10}
 	fmt.Println("Rectangle Area:", s.Area())
@@ -54,6 +68,12 @@ func main() {
 		fmt.Println("Result:", result)
 	}
 
+	s = Square{Side: 5}
+
+	fmt.Println("Area:", s.Area())
+	fmt.Println("Perimeter:", s.Perimeter())
+
+	printShapeInfo(Rectangle{Width: 5, Height: 10})
 }
 
 func divide(a, b float64) (float64, error) {
