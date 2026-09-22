@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 )
 
 func main() {
@@ -54,11 +55,17 @@ func main() {
 	}
 
 	// Function call
-	var n int;
-	fmt.Print("Enter a number to calculate factorial: ")
-	fmt.Scan(&n)
-	result := factorial(n)
-	fmt.Printf("Factorial of %d is %d\n", n, result)
+	// var n int;
+	// fmt.Print("Enter a number to calculate factorial: ")
+	// fmt.Scan(&n)
+	// result := factorial(n)
+	// fmt.Printf("Factorial of %d is %d\n", n, result)
+
+	parseTime := time.Now()
+	fmt.Println("Current time is:", parseTime.Format("2006-01-02 15:04:05 Monday"))
+
+	createDate := time.Date(2024, time.June, 1, 0, 0, 0, 0, time.UTC)
+	fmt.Println("Created date is:", createDate.Format("2006-01-02 15:04:05 Monday"))
 }
 
 func factorial(n int) int {

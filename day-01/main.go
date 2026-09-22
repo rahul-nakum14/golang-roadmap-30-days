@@ -6,9 +6,15 @@
 
 package main
 
-import "fmt"
+import (
+	"bufio"
+	"fmt"
+	"os"
+	"strconv"
+	"strings"
+)
 
-const sal = "dfs";
+const sal string = "dfs";
 
 func main(){
 
@@ -48,8 +54,7 @@ func main(){
 	floatData := 33.32
 	fmt.Printf("flaotData %T->", floatData) // default take float 64
 
-	fmt.Println("\n")
-	 sal:="asdasd"
+	sal:="asdasd"
 	//const variable
 	fmt.Println("sal is ->",sal)
 	// print vs println
@@ -66,6 +71,38 @@ func main(){
 
 	// printf is used to format string 
 	fmt.Printf("Name: %s, Age: %d , data type of name: %T", name, age, name)
+
+	//New
+
+	var firstname string = "Rahul"
+	fmt.Println("\n This is my firstname", firstname)
 	
+	var website = "www.google.com"
+	fmt.Println("website is ->", website)
+
+
+	//user input
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Enter your name: ")
+	nameInput, _ := reader.ReadString('\n')
+	fmt.Println("Hello,", nameInput)
+
+	// conversaions
+	fmt.Println("Enter the rating")
+	reader1 := bufio.NewReader(os.Stdin)
+	input, err := reader1.ReadString('\n')
+
+	if err != nil {
+		fmt.Println("Error reading input:", err)
+		return
+	}
+
+	numData, err := strconv.Atoi(strings.TrimSpace(input))
+	if err != nil {
+		fmt.Println("Error converting input to integer:", err)
+		return
+	}
+	fmt.Print("Enter your age: ")
+	fmt.Println("Your age is:", numData+1)
 }
 
