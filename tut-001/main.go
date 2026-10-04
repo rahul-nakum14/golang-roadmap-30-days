@@ -89,3 +89,31 @@ func timing(){
 	createdDate := time.Date(2020,time.May,14,11,34,0,0, time.UTC)
 	fmt.Println("created datee" , createdDate.Format("2006-01-02 15:04:05 Monday"))
 }
+
+func slices() {
+	numbers := []int{10, 20, 30, 40, 50}
+
+	fmt.Println("slice is:", numbers)
+	fmt.Println("length:", len(numbers))
+	fmt.Println("capacity:", cap(numbers))
+
+	// adding element
+	numbers = append(numbers, 60)
+	fmt.Println("after append:", numbers)
+
+	//adds multiple elements
+	numbers = append(numbers, 70, 80)
+	fmt.Println("after multiple append:", numbers)
+
+	// access elements
+	fmt.Println("first element:", numbers[0])
+	fmt.Println("last element:", numbers[len(numbers)-1])
+
+	// Slicing data
+	fmt.Println("first three:", numbers[:3])
+	fmt.Println("from index 2:", numbers[2:])
+
+	// Modify element
+	numbers[0] = 100
+	fmt.Println("after modification:", numbers)
+}
