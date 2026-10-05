@@ -7,6 +7,7 @@ import (
 	"os"
 	"strconv"
 	"strings"
+	// "sort"
 )
 
 func main(){
@@ -15,6 +16,8 @@ func main(){
 	// converSion()
 	// pointer()
 	// arrays()
+	// slices()
+	maps()
 }
 
 func arrays(){
@@ -116,4 +119,33 @@ func slices() {
 	// Modify element
 	numbers[0] = 100
 	fmt.Println("after modification:", numbers)
+
+	data := make([]int, 3)
+	data[0] = 23
+	data[1] = 43
+	data[2] = 32
+	// sort.Ints(data)
+	// fmt.Print("Are the elements sorted? ", sort.IntsAreSorted(data))
+	fmt.Println("data slice:", data)
+
+	var index int = 1
+	// Remove element at index 1
+	data = append(data[:index], data[index+1:]...)
+	fmt.Println("after removing element at index 1:", data)
+}
+
+
+func maps() {
+	// Create a map to store student names and their ages
+	students := make(map[string]int)
+	students["Alice"] = 20
+	students["Bob"] = 22
+	students["Charlie"] = 19
+
+	fmt.Println("students -->", students)
+	fmt.Println("Alice's age:", students["Alice"])
+
+	// Update a student's age
+	students["Bob"] = 23
+	fmt.Println("Updated students -->", students)
 }
