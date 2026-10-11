@@ -148,4 +148,11 @@ func maps() {
 	// Update a student's age
 	students["Bob"] = 23
 	fmt.Println("Updated students -->", students)
+
+	delete(students, "Charlie")
+	fmt.Println("After deleting Charlie -->", students)
+
+	for name, age := range students {
+		fmt.Printf("%s is %d years old\n", name, age)
+	}
 }
