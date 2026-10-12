@@ -17,7 +17,8 @@ func main(){
 	// pointer()
 	// arrays()
 	// slices()
-	maps()
+	// maps()
+	structs()
 }
 
 func arrays(){
@@ -155,4 +156,17 @@ func maps() {
 	for name, age := range students {
 		fmt.Printf("%s is %d years old\n", name, age)
 	}
+}
+
+func structs() {
+	type Person struct {
+		Name string
+		Age  int
+	}
+
+	data := Person{Name: "Rahul", Age: 25}
+	fmt.Printf("Person data: %+v\n", data)
+	fmt.Println("Name: %v", data.Name)
+	fmt.Println("Age:", data.Age)
+
 }
