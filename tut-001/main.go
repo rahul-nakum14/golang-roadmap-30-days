@@ -1,14 +1,15 @@
 package main
 
 import (
-	"fmt"
-	"time"
 	"bufio"
+	"fmt"
+	"math/rand"
 	"os"
 	"strconv"
 	"strings"
+	"time"
 	// "sort"
-)
+	)
 
 func main(){
 	// timing()
@@ -18,7 +19,10 @@ func main(){
 	// arrays()
 	// slices()
 	// maps()
-	structs()
+	// structs()
+	// ifElse()
+	// switchCase()
+	loops()
 }
 
 func arrays(){
@@ -165,8 +169,94 @@ func structs() {
 	}
 
 	data := Person{Name: "Rahul", Age: 25}
-	fmt.Printf("Person data: %+v\n", data)
-	fmt.Println("Name: %v", data.Name)
+	fmt.Printf("Person data: %+v\n", data) //For structs, includes field names
+	fmt.Printf("Name: %#v\n", data.Name) // #+v Go-syntax representation of the value
 	fmt.Println("Age:", data.Age)
+
+}
+
+func ifElse() {
+	var age int
+
+	fmt.Println("Enter your age:")
+	ageInput, _ := bufio.NewReader(os.Stdin).ReadString('\n')
+	ageInput = strings.TrimSpace(ageInput)
+	age, err := strconv.Atoi(ageInput)
+	if err != nil {
+		fmt.Println("Invalid input. Please enter a valid number.")
+		return
+	}
+	fmt.Printf("Your age Type is: %T\n", age)
+	if age < 18 {
+		fmt.Println("You are a minor.")
+	}else if age >= 18 && age < 65 {
+		fmt.Println("You are an adult.")
+	}else {
+		fmt.Println("You are a senior.")
+	}
+
+	if newAge:= age + 1; newAge < 65 {
+		fmt.Println("Next year, you will still be an adult.")
+	}
+}
+
+
+func switchCase() {
+	rand.Seed(time.Now().UnixNano())
+	randNo := rand.Intn(5) + 1
+	fmt.Println("this is the random number", randNo)
+
+	switch randNo {
+	case 1:
+		fmt.Println("One")
+	case 2:
+		fmt.Println("Two")
+	case 3:
+		fmt.Println("Three")	
+		fallthrough // fallthrough allows the execution to continue to the next case
+	case 4:
+		fmt.Println("Four")
+	case 5:
+		fmt.Println("Five")
+	default:
+		fmt.Println("Number out of range")
+	}
+}
+
+func loops() {
+	// for loop
+
+	// days := []string{"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"}
+	// for i := 0; i < len(days); i++ {
+	// 	fmt.Println("day is ", days[i])
+	// }
+
+	// for index, day := range days {
+	// 	fmt.Printf("day %d is %s\n", index+1, day)
+	// }
+
+	//while loop
+	count := 0
+	for count < 5 {
+		// if count == 3 {
+		// 	fmt.Println("count is 3, breaking the loop")
+		// 	break
+		// }
+
+		if count == 2 {
+			goto gotodemo // jump to the label
+		}
+		fmt.Println("count is ", count+1)
+		count++
+	}
+
+	gotodemo:
+	for i := 0; i < 5; i++ {
+		if i == 3 {
+			fmt.Println("i is 3, continuing to next iteration")
+			continue gotodemo // continue to the label
+		}
+		fmt.Println("i is ", i)
+	}
 
 }
