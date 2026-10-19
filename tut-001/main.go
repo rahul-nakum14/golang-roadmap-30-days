@@ -3,13 +3,14 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io"
 	"math/rand"
 	"os"
 	"strconv"
 	"strings"
 	"time"
 	// "sort"
-	)
+)
 
 func main(){
 	// timing()
@@ -22,7 +23,13 @@ func main(){
 	// structs()
 	// ifElse()
 	// switchCase()
-	loops()
+	// loops()
+	
+	// ssd := Person{Name: "Rahul", Age: 25}
+	// ssd.Greet()
+	// ssd.newName("Rahul Kumar")
+	// fmt.Printf("After changing name: %+v\n", ssd)
+	writeToFile()
 }
 
 func arrays(){
@@ -259,4 +266,38 @@ func loops() {
 		fmt.Println("i is ", i)
 	}
 
+}
+
+type Person struct {
+	Name string
+	Age  int
+}
+
+func (p Person) Greet() {
+	fmt.Printf("Hello, my name is %s and I am %d years old.\n", p.Name, p.Age)
+}
+
+func (p *Person) newName(newName string) {
+	p.Name = newName
+}
+
+
+func writeToFile() {
+	file, err := os.Create("output.txt")
+	if err != nil {
+		fmt.Println("Error creating file:", err)	
+		panic(err)
+	}
+	io.WriteString(file, "Heyy")
+	defer file.Close()
+	readFromFile()
+}
+
+func readFromFile() {
+	content, err := os.ReadFile("output.txt")
+	if err != nil {
+		fmt.Println("Error opening file:", err)
+		panic(err)
+	}
+	fmt.Println(string(content))
 }
