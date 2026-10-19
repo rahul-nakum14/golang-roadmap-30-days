@@ -6,7 +6,7 @@ import (
 	// "io"
 	"net/url"
 )
-const myurl string = "https://jsonplaceholder.typicode.com/posts/1?userId=1"
+const myurl string = "https://jsonplaceholder.typicode.com/posts/1?userId=1&name=Rahul"
 
 func main() {
 
@@ -37,5 +37,20 @@ func main() {
 
 
 		qParams := result.Query()
-		fmt.Println("Query Parameters:")
+		fmt.Println("Query Parameters:",qParams["userId"])
+		fmt.Println("Query Parameters:",qParams["name"])	
+
+		for _, value := range qParams {
+			fmt.Println("Value:", value)
+		}
+
+		creaeeUrl := &url.URL{
+			Scheme: "https",
+			Host:   "jsonplaceholder.typicode.com",
+			Path:   "/posts/1",
+			RawPath: "user rahul",
+			RawQuery: "userId=1&name=Rahul",
+		}
+		fmt.Println("Created URL:", creaeeUrl.String())
+
 	}
