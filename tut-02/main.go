@@ -1,12 +1,13 @@
-package main 
+package main
 
 import (
 	"fmt"
+	"io"
 	"net/http"
-	// "io"
 	"net/url"
+	"strings"
 )
-const myurl string = "https://jsonplaceholder.typicode.com/posts/1?userId=1&name=Rahul"
+const myurl string = "https://jsonplaceholder.typicode.com/posts/1"
 
 func main() {
 
@@ -53,4 +54,29 @@ func main() {
 		}
 		fmt.Println("Created URL:", creaeeUrl.String())
 
+		perFormGetRequest(myurl)
 	}
+
+func perFormGetRequest(url string) {
+	resp, err := http.Get(url)
+	if err != nil {
+		fmt.Println("Error making GET request:", err)
+		return
+	}
+	defer resp.Body.Close()
+
+	var reponseString  strings.Builder
+	databytes, err := io.ReadAll(resp.Body)
+	bytecount, _ := reponseString.Write(databytes)
+
+	if err != nil {
+		fmt.Println("Error reading response body:", err)
+		return
+	}
+	fmt.Println("Status code:", resp.StatusCode)
+	fmt.Println("Contenet Length:" , resp.ContentLength)
+	fmt.Println("Response body:", string(databytes))
+	fmt.Println("Byte count:", bytecount)
+
+	fmt.Println(reponseString.String())
+}
