@@ -54,7 +54,9 @@ func main() {
 		}
 		fmt.Println("Created URL:", creaeeUrl.String())
 
-		perFormGetRequest(myurl)
+		// perFormGetRequest(myurl)
+		// perFormPostRequest("https://jsonplaceholder.typicode.com/posts")
+		performPostformRequest("https://jsonplaceholder.typicode.com/posts")
 	}
 
 func perFormGetRequest(url string) {
@@ -79,4 +81,40 @@ func perFormGetRequest(url string) {
 	fmt.Println("Byte count:", bytecount)
 
 	fmt.Println(reponseString.String())
+}
+
+
+func perFormPostRequest(url string) {
+
+	requestBody := strings.NewReader(`{
+		"title": "foo",
+		"body": "bar",
+		"userId": 1
+	  }`)
+
+	  response,err:=http.Post(url,"application/json", requestBody)
+	  if err != nil {
+		  fmt.Println("Error making POST request:", err)
+		  return
+	  }
+	  defer response.Body.Close()	
+	  content,_:=io.ReadAll(response.Body)
+	  fmt.Println(string(content))
+}
+
+func performPostformRequest(endpoint  string) {
+
+	data := url.Values{}
+	data.Set("title", "foo")
+	data.Set("body", "bar")
+	data.Set("userId", "1")
+
+	response, err := http.PostForm(endpoint , data)
+	if err != nil {
+		fmt.Println("Error making POST request:", err)
+		return
+	}
+	defer response.Body.Close()
+	content, _ := io.ReadAll(response.Body)
+	fmt.Println(string(content))
 }
