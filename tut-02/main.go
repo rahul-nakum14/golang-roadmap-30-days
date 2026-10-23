@@ -118,3 +118,22 @@ func performPostformRequest(endpoint  string) {
 	content, _ := io.ReadAll(response.Body)
 	fmt.Println(string(content))
 }
+
+func stringChecksandCustomType() {
+	// type TransactionType string
+
+	// var demo TransactionType = "Deposit"
+	// var demo2 string = "Withdrawal"
+
+	// demo = demo2  // error as both are different types, even though they are both strings. You cannot assign a value of type string to a variable of type TransactionType without an explicit conversion.
+
+
+	type TransactionType = string
+	var demo TransactionType = "Deposit"
+	var demo2 string = "Withdrawal"
+
+	demo = demo2  //works coz we deifne the alias
+
+	fmt.Println("Demo:", demo)
+
+}
