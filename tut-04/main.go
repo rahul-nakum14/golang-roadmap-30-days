@@ -20,8 +20,29 @@ func main() {
 		{Name: "Alice", Age: 25, Salary: 60000.0, Password: "alice123", Books: []string{"Book3", "Book4"}},	
 		{Name: "Bob", Age: 35, Salary: 70000.0, Password: "bob123", Books:nil}, // as here Books field is empty, so it will be omitted
 	}
-
 	result , _ := json.MarshalIndent(personDetails, "", "  ")
 	fmt.Println("JSON representation:", string(result))
 
+}
+
+func decodeJSON() {
+	jsonData := `[
+		{"name": "John", "age": 30, "salary": 50000.0, "books": ["Book1", "Book2"]},
+		{"name": "Alice", "age": 25, "salary": 60000.0, "books": ["Book3", "Book4"]},
+		{"name": "Bob", "age": 35, "salary": 70000.0}
+	]`
+	var persons []Person
+
+	checkVar := json.Valid([]byte(jsonData))
+	if checkVar {
+		fmt.Println("jSON is valid")
+		err := json.Unmarshal([]byte(jsonData), &persons)
+		if err != nil {
+			fmt.Println("Error decoding JSON:", err)
+			return
+		}
+		fmt.Println("Decoded persons:", persons)
+		} else {
+				fmt.Println("JSON is invalid")
+		}
 }
