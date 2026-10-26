@@ -94,3 +94,9 @@ func (s *Account)Getstatement(){
 	// }
 }
 
+
+func NewBank() *Bank{
+	return &Bank{
+		Accounts: make(map[string]*Account),
+	}
+}
