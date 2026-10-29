@@ -3,8 +3,10 @@ package main
 import (
 	"encoding/json"
 	"log"
+	"math/rand"
 	"net/http"
 
+		"strconv"
 	"github.com/gorilla/mux"
 )
 
@@ -35,7 +37,7 @@ func main() {
 }
 
 func (c *Course)IsEmpty()bool{
-	return c.CourseId == "" && c.CourseName == "" 
+	return c.CourseName == "" 
 }
 
 func HomeHandler(w http.ResponseWriter, r *http.Request) {
@@ -68,3 +70,31 @@ func getOneCourse(w http.ResponseWriter, r *http.Request){
 				return
 
 }
+
+func addCourse(w http.ResponseWriter, r *http.Request){
+			w.Header().Set("Content-type","application/json")
+
+			if r.Body == nil{
+				json.NewEncoder(w).Encode("please send some data")
+			}
+
+
+			var course Course
+
+			_ = json.NewDecoder(r.Body).Decode(&course)
+
+			if course.IsEmpty(){
+								json.NewEncoder(w).Encode("please send some data")
+					return
+			}
+
+
+			course.CourseId = strconv.Itoa(rand.Intn(100))
+
+			courses = append(courses, course)
+
+			json.NewEncoder(w).Encode(course)
+
+			return 
+
+		}
