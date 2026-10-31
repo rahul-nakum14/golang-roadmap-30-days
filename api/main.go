@@ -71,7 +71,7 @@ func getOneCourse(w http.ResponseWriter, r *http.Request){
 
 }
 
-func addCourse(w http.ResponseWriter, r *http.Request){
+	func addCourse(w http.ResponseWriter, r *http.Request){
 			w.Header().Set("Content-type","application/json")
 
 			if r.Body == nil{
@@ -97,4 +97,26 @@ func addCourse(w http.ResponseWriter, r *http.Request){
 
 			return 
 
+	}
+
+
+
+	func updateCourse(w http.ResponseWriter, r *http.Request){
+		w.Header().Set("Content-type","application/json")
+
+		params := mux.Vars(r)
+	
+
+
+
+		for index ,course := range(courses){
+			if course.CourseId == params["id"]{
+				courses = append(courses[:index],courses[index+1:]...)
+				json.NewDecoder(r.Body).Decode(&course)
+				course.CourseId = params["id"]
+				courses = append(courses, course)
+				json.NewEncoder(w).Encode(course)
+				return
+			}
 		}
+	}
