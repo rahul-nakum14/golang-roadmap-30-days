@@ -30,6 +30,10 @@ func main() {
 
 	r.HandleFunc("/", HomeHandler).Methods("GET")
 	r.HandleFunc("/health", HealthHandler).Methods("GET")
+	r.HandleFunc("/course/{id}", getOneCourse).Methods("GET")
+	r.HandleFunc("/course", addCourse).Methods("POST")
+	r.HandleFunc("/course/{id}", updateCourse).Methods("PUT")
+	r.HandleFunc("/course/{id}", deleteCourse).Methods("DELETE")
 
 	log.Println("Server starting on port 3000")
 
